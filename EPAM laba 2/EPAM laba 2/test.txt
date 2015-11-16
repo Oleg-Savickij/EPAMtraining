@@ -1,0 +1,1 @@
+But you can access it for? a general method of reading text content. TextReader reads text characters from a file. It is ,NET Framework. It's usually better to use StreamReader in your programs.
