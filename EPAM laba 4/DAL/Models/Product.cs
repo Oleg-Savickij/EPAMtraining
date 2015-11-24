@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace DAL.Models
 {
-    public class Class1
+    public class Product
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+
     }
 }
