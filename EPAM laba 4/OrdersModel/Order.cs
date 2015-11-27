@@ -23,7 +23,7 @@ namespace OrdersModel
         public int Product_Id { get; set; }
 
         [Column(TypeName = "real")]
-        public double Sum { get; set; }
+        public decimal Sum { get; set; }
 
         public virtual Product Product { get; set; }
 

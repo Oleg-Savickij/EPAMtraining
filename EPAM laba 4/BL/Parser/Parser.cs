@@ -1,6 +1,8 @@
-﻿using DAL.Models;
+﻿using CsvHelper;
+using DAL.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,12 @@ namespace BL.Parser
 
         public void Parse()
         {
+            string[] dirs = Directory.GetFiles(@"Orders for load", "*.csv");
+
+            var file = new StreamReader(dirs[0]);
+            var csv = new CsvReader(file);
+            var record = csv.GetRecord<RecordInfo>();
+
             string[] order;
             string[] Seller = this.SplitFileName(fileName);
             for (int i=0;i<newOrders.Length;i++)
