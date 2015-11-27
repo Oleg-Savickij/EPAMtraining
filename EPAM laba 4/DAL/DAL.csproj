@@ -49,16 +49,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IDBContext.cs" />
-    <Compile Include="IRepository.cs" />
+    <Compile Include="Interfaces\IDBContext.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Seller.cs" />
-    <Compile Include="OrderRepository.cs" />
-    <Compile Include="ProductRepository.cs" />
+    <Compile Include="Repositoreies\EFUnitOfWork.cs" />
+    <Compile Include="Repositoreies\OrderRepository.cs" />
+    <Compile Include="Repositoreies\ProductRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository.cs" />
-    <Compile Include="SellerRepository.cs" />
+    <Compile Include="Repositoreies\SellerRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OrdersModel\OrdersModel.csproj">

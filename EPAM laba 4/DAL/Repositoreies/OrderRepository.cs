@@ -9,7 +9,12 @@ namespace DAL
 {
     public class OrderRepository: IRepository<Order>
     {
-        private OrdersModel.OrdersModel context = new OrdersModel.OrdersModel();
+        private OrdersModel.OrdersModel context;
+
+        public OrderRepository(OrdersModel.OrdersModel db)
+        {
+            this.context = db;
+        }
 
         OrdersModel.Order ToEntity(DAL.Models.Order source)
         {
