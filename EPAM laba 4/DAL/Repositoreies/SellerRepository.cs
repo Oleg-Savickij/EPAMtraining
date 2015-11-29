@@ -1,4 +1,5 @@
-﻿using DAL.Models;
+﻿using AutoMapper;
+using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace DAL
         public SellerRepository(OrdersModel.OrdersModel db)
         {
             this.context = db;
+            Mapper.CreateMap<OrdersModel.Seller, Seller>();
+            Mapper.CreateMap<Seller, OrdersModel.Seller > ();
         }
 
         OrdersModel.Seller ToEntity (DAL.Models.Seller source)
@@ -26,7 +29,7 @@ namespace DAL
         }
         public void Add(Seller entity)
         {
-            context.Seller.Add(ToEntity(entity));
+            context.Seller.Add(Mapper.Map<Seller, OrdersModel.Seller>(entity));
         }
 
         public void Delete(Seller entity)

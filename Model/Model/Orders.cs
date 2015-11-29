@@ -1,4 +1,4 @@
-namespace OrdersModel
+namespace DBModel
 {
     using System;
     using System.Collections.Generic;
@@ -6,27 +6,27 @@ namespace OrdersModel
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Order")]
-    public partial class Order
+    public partial class Orders
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
-        [Column("Seller Id")]
-        public int Seller_Id { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime Date { get; set; }
 
         [Required]
         [StringLength(10)]
         public string Client { get; set; }
 
-        [Column("Product Id")]
-        public int Product_Id { get; set; }
+        [Required]
+        [StringLength(10)]
+        public string Product { get; set; }
 
-        [Column(TypeName = "float")]
         public double Sum { get; set; }
 
-        public virtual Product Product { get; set; }
+        [Column("Manager Id")]
+        public int Manager_Id { get; set; }
 
-        public virtual Seller Seller { get; set; }
+        public virtual Managers Managers { get; set; }
     }
 }

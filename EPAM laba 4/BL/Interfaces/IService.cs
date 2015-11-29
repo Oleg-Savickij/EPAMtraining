@@ -9,9 +9,11 @@ namespace BL.Interfaces
 {
     public interface IService
     {
-        void MakeOrder(Order orderDto);
-        Order GetOrder(int? id);
-        IEnumerable<Order> GetOrders();
+        void MakeOrder(Order order);
+        void AddSeller(Seller seller);
+        void AddProduct(Product product);
+
+        void Save();
         void Dispose();
     }
 }

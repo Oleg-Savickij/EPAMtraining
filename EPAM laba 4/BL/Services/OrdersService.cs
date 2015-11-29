@@ -20,17 +20,7 @@ namespace BL
         public void Dispose()
         {
             uow.Dispose();
-        }
-
-        public Order GetOrder(int? id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Order> GetOrders()
-        {
-            throw new NotImplementedException();
-        }
+        }       
 
         public void MakeOrder(Order item)
         {
@@ -38,7 +28,26 @@ namespace BL
             {
                 uow.Orders.Add(item);
             }
+        }
+
+        public void AddSeller(Seller item)
+        {
+            if (item != null)
+            {
+                uow.Sellers.Add(item);
+            }
+        }
+        public void Save()
+        {
             uow.Save();
+        }
+
+        public void AddProduct(Product item)
+        {
+            if (item != null)
+            {
+                uow.Products.Add(item);
+            }
         }
     }
 }

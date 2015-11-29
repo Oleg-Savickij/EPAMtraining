@@ -1,49 +1,59 @@
-﻿using CsvHelper;
+﻿using BL.Interfaces;
+using CsvHelper;
 using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
 
 namespace BL.Parser
 {
     public class Parser
     {
-        ICollection<Order> _orders = new List<Order>();
-        ICollection<Product> _products = new List<Product>();
-        ICollection<Seller> _sellers = new List<Seller>();
-        OrdersService ordersService = new OrdersService();
-        string fileName;
-        string[] newOrders;
-        public Parser(string FileName,string[] NewOrder)
+        private IService service;
+        public RecordInfo ParseFileName(string CurrentPath)
         {
-            this.fileName = FileName;
-            this.newOrders = NewOrder;
+            string[] fileName = CurrentPath.Split('_');
+            
+            return new RecordInfo { Seller = fileName[0], Date = DateTime.ParseExact(fileName[1].Substring(0, 8), "ddMMyyyy", Thread.CurrentThread.CurrentCulture) };
         }
 
-        public void Parse()
+        //public List<RecordInfo> ParseFile(string )
+
+        public void Parse(string fileName)
         {
-            string[] dirs = Directory.GetFiles(@"Orders for load", "*.csv");
-
-            var file = new StreamReader(dirs[0]);
-            var csv = new CsvReader(file);
-            var record = csv.GetRecord<RecordInfo>();
-
-            string[] order;
-            string[] Seller = this.SplitFileName(fileName);
-            for (int i=0;i<newOrders.Length;i++)
+            service = new OrdersService();
+            var file = new StreamReader(fileName);
+            var csv = new CsvReader(file).GetRecords<RecordInfo>().ToList();
+            
+            var FileNameInformation = ParseFileName(fileName);
+            AddSellerToDB(FileNameInformation);
+            
+            foreach (var item in csv)
             {
-
-                order = newOrders[0].Split(',');
-                var newOrder = new Order { }
+                var order = new Order { Client = item.Client, Sum = item.Sum, Product = new Product { Name = item.Product }, Seller = new Seller { Name = FileNameInformation.Seller } };
+                service.MakeOrder(order);
             }
+            service.Save();
+            service.Dispose();
         }
 
-        public string[] SplitFileName(string fileName)
+        public IEnumerable<RecordInfo> ParseFile(CsvReader file)
         {
-            return fileName.Split('_');
+            var records = file.GetRecords<RecordInfo>();
+            return records;
         }
+        public void AddSellerToDB(RecordInfo record)
+        {
+            var seller = new Seller { Name = record.Seller };
+            
+            service.AddSeller(seller);
+        }
+
+       
     }
 }
