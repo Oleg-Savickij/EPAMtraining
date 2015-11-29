@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,6 +54,10 @@
     <ProjectReference Include="..\BLL\BLL.csproj">
       <Project>{a20161a6-2a83-4e6f-8dda-a5d0e8cee0d4}</Project>
       <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DirectoryWatchService\DirectoryWatchService.csproj">
+      <Project>{8e01dbca-bb38-4944-a51b-bc89aa4185a8}</Project>
+      <Name>DirectoryWatchService</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

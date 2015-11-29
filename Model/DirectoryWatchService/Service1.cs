@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.ServiceProcess;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DirectoryWatchService
@@ -14,18 +15,26 @@ namespace DirectoryWatchService
     public partial class Service1 : ServiceBase
     {
         private Watcher watcher;
+        private TaskFactory tf = new TaskFactory();
+        
         public Service1()
         {
-            InitializeComponent();
+            InitializeComponent();         
         }
 
+     
         protected override void OnStart(string[] args)
         {
-            watcher = new Watcher();
+             tf.StartNew(()=>watcher = new Watcher());
+            
         }
 
         protected override void OnStop()
         {
+           
         }
+     
+
+    
     }
 }
