@@ -2,6 +2,7 @@
 using BLL;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.ServiceProcess;
 using System.Text;
@@ -13,7 +14,9 @@ namespace CheckDirectory
     {
         static void Main(string[] args)
         {
-            Watcher watcher = new Watcher();
+            Parser p = new Parser();
+            string[] files = Directory.GetFiles(@"D:\TestFolder\", "*.csv");
+            p.Parse(Path.GetFullPath(files[0]));
 
             
         }

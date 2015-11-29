@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BLL
@@ -14,7 +15,7 @@ namespace BLL
         public void Parse(string path)
         {
             string[] fileName = path.Split('\\', '_', '.');
-            var manager = new DAL.ModelDTO.ManagerDTO { AddDate = DateTime.Parse(fileName[2]), Name = fileName[1] };
+            var manager = new DAL.ModelDTO.ManagerDTO { AddDate = DateTime.ParseExact(fileName[3].Substring(0, 8), "ddMMyyyy", Thread.CurrentThread.CurrentCulture), Name = fileName[2] };
             string[] record;
             using (StreamReader file = new StreamReader(path))
             {
