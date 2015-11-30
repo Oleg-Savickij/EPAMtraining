@@ -16,7 +16,7 @@ namespace BLL
         public void Parse(string path)
         {
             string[] fileName = path.Split('\\', '_', '.');
-            var manager = new DAL.ModelDTO.ManagerDTO {  Name = fileName[2] };
+            var manager = new DAL.ModelDTO.ManagerDTO {  Name = fileName[fileName.Length-3] };
             var efManager = uow.Managers.GetByName(manager.Name);
             try {
                 if (efManager == null)

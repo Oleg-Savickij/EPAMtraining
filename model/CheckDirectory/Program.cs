@@ -14,11 +14,12 @@ namespace CheckDirectory
     {
         static void Main(string[] args)
         {
+            TaskFactory tf = new TaskFactory();
             Parser p = new Parser();
             string[] files = Directory.GetFiles(@"D:\TestFolder\", "*.csv");
             foreach (var item in files)
             {
-                p.Parse(Path.GetFullPath(item));
+                tf.StartNew(() =>p.Parse(Path.GetFullPath(item)));
             }
             
 
