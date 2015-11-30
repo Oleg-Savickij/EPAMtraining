@@ -74,7 +74,6 @@ namespace DAL
                             ve.PropertyName, ve.ErrorMessage);
                     }
                 }
-                throw;
             }
             
         }

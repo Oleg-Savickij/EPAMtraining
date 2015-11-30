@@ -8,7 +8,7 @@ namespace DBModel
 
     public partial class Orders
     {
-        
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
         [Column(TypeName = "date")]

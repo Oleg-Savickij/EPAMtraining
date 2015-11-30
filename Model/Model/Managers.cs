@@ -13,7 +13,7 @@ namespace DBModel
         {
             Orders = new HashSet<Orders>();
         }
-             
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
         [Required]

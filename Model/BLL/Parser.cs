@@ -1,6 +1,7 @@
 ﻿using DAL;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,17 @@ namespace BLL
             string[] fileName = path.Split('\\', '_', '.');
             var manager = new DAL.ModelDTO.ManagerDTO {  Name = fileName[2] };
             var efManager = uow.Managers.GetByName(manager.Name);
-            if (efManager == null)
+            try {
+                if (efManager == null)
+                {
+                    uow.Managers.Add(manager);
+                    uow.Save();
+                    efManager = uow.Managers.GetByName(manager.Name);
+                }
+            }
+            catch (DataException)
             {
-                uow.Managers.Add(manager);
-                uow.Save();
-                efManager = uow.Managers.GetByName(manager.Name);
+                Console.WriteLine("Enable to save manager.");
             }
             string[] record;
             using (StreamReader file = new StreamReader(path))
@@ -37,7 +44,14 @@ namespace BLL
                         Console.WriteLine("Wrong order information");
                     }
                 }
-                uow.Save();
+                try
+                {
+                    uow.Save();
+                }
+                catch(DataException)
+                {
+                    Console.WriteLine("Enable to save new orders from file {0}_{1}", fileName[2], fileName[3]);
+                }
                 uow.Dispose();
             }
         }
