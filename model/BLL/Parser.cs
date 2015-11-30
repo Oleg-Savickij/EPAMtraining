@@ -44,14 +44,11 @@ namespace BLL
                         Console.WriteLine("Wrong order information");
                     }
                 }
-                try
-                {
+                
                     uow.Save();
-                }
-                catch(DataException)
-                {
-                    Console.WriteLine("Enable to save new orders from file {0}_{1}", fileName[2], fileName[3]);
-                }
+                
+                
+                
                 uow.Dispose();
             }
         }

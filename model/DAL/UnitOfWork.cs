@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL.ModelDTO;
 using System.Data.Entity.Validation;
+using System.Data;
 
 namespace DAL
 {
@@ -74,6 +75,10 @@ namespace DAL
                             ve.PropertyName, ve.ErrorMessage);
                     }
                 }
+            }
+            catch (DataException)
+            {
+                Console.WriteLine("Enable to save new orders from file");
             }
             
         }
