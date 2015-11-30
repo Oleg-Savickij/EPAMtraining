@@ -1,4 +1,4 @@
-﻿using DAL.Model;
+﻿using DAL.ModelDTO;
 using DBModel;
 using System;
 using System.Collections.Generic;
@@ -19,12 +19,13 @@ namespace DAL
 
         private Orders ToEntity(OrderDTO source)
         {
-            return new Orders { Id=source.Id,Client=source.Client,Date=source.Date,Product=source.Product,Sum=source.Sum,Manager_Id=source.Manager.Id };
+            
+            return new Orders { Client=source.Client,Date=source.Date,Product=source.Product,Sum=source.Sum };
         }
 
         private OrderDTO ToObject(Orders source)
         {
-            return new OrderDTO { Id = source.Id, Client = source.Client, Date = source.Date, Product = source.Product, Sum = source.Sum };
+            return new OrderDTO { Client = source.Client, Date = source.Date.Date, Product = source.Product, Sum = source.Sum };
         }
         public void Add(OrderDTO entity)
         {
@@ -58,6 +59,11 @@ namespace DAL
             var entry = context.Entry(entity);
             context.Orders.Attach(ToEntity(entity));
             entry.State = System.Data.Entity.EntityState.Modified;
+        }
+
+        public OrderDTO GetByName(string Name)
+        {
+            throw new NotImplementedException();
         }
     }
 }

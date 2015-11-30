@@ -11,6 +11,7 @@ namespace DAL
         void Add(T entity);
         void Delete(T entity);
         void Update(T entity);
+        T GetByName(string Name);
         T Get(int id);
         IEnumerable<T> GetAll();
         void Save();

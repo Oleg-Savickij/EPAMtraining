@@ -17,14 +17,14 @@ namespace DAL
             context = db;
         }
 
-        private Managers ToEntity(ManagerDTO source)
+        private static Managers ToEntity(ManagerDTO source)
         {
-            return new Managers { AddDate = source.AddDate, Name = source.Name, Id = source.Id };
+            return new Managers { Name = source.Name };
         }
 
         private ManagerDTO ToObject(Managers source)
         {
-            return new ManagerDTO { AddDate = source.AddDate, Name = source.Name, Id = source.Id };
+            return new ManagerDTO { Name = source.Name, Id = source.Id };
         }
         public void Add(ManagerDTO item)
         {
@@ -60,5 +60,10 @@ namespace DAL
             context.SaveChanges();
         }
 
+        public ManagerDTO GetByName(string Name)
+        {
+            var manager = context.Managers.FirstOrDefault(x => x.Name == Name);
+            return ToObject(manager);
+        }
     }
 }

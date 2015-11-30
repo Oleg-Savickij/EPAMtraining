@@ -1,11 +1,12 @@
-﻿using DBModel;
+﻿using DAL.ModelDTO;
+using DBModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Model
+namespace DAL.ModelDTO
 {
     public class OrderDTO
     {
@@ -14,6 +15,6 @@ namespace DAL.Model
         public string Client { get; set; }
         public string Product { get; set; }
         public double Sum { get; set; }
-        public virtual Managers Manager {get;set;}
+        public virtual int ManagerId {get;set;}
     }
 }

@@ -16,7 +16,11 @@ namespace CheckDirectory
         {
             Parser p = new Parser();
             string[] files = Directory.GetFiles(@"D:\TestFolder\", "*.csv");
-            p.Parse(Path.GetFullPath(files[0]));
+            foreach (var item in files)
+            {
+                p.Parse(Path.GetFullPath(item));
+            }
+            
 
             
         }
