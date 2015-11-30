@@ -19,9 +19,9 @@ namespace CheckDirectory
             string[] files = Directory.GetFiles(@"D:\TestFolder\", "*.csv");
             foreach (var item in files)
             {
-                tf.StartNew(() =>p.Parse(Path.GetFullPath(item)));
+                tf.StartNew(() =>p.Parse(Path.GetFullPath(item)));               
             }
-            
+            Console.ReadKey();
 
             
         }
