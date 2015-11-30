@@ -26,9 +26,9 @@ namespace BLL
                     efManager = uow.Managers.GetByName(manager.Name);
                 }
             }
-            catch (DataException)
+            catch (DataException e)
             {
-                Console.WriteLine("Enable to save manager.");
+                Console.WriteLine("Enable to save manager. Reason: {0}",e.InnerException.InnerException.Message);
             }
             string[] record;
             using (StreamReader file = new StreamReader(path))
@@ -36,19 +36,9 @@ namespace BLL
                 while(!file.EndOfStream)
                 {
                     record = file.ReadLine().Split(';');
-                    try {
-                        uow.Orders.Add(new DAL.ModelDTO.OrderDTO { Date = DateTime.Parse(record[0]).Date, Client = record[1], Product = record[2], Sum = double.Parse(record[3]), ManagerId = efManager.Id });
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("Wrong order information");
-                    }
+                    uow.Orders.Add(new DAL.ModelDTO.OrderDTO { Date = DateTime.Parse(record[0]).Date, Client = record[1], Product = record[2], Sum = double.Parse(record[3]), ManagerId = efManager.Id });
                 }
-                
-                    uow.Save();
-                
-                
-                
+                uow.Save();         
                 uow.Dispose();
             }
         }

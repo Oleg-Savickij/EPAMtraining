@@ -76,9 +76,9 @@ namespace DAL
                     }
                 }
             }
-            catch (DataException)
+            catch (DataException e)
             {
-                Console.WriteLine("Enable to save new orders from file");
+                Console.WriteLine("Enable to save new orders from file. Reason: {0}",e.InnerException.InnerException.Message);
             }
             
         }

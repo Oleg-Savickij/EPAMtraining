@@ -20,7 +20,7 @@ namespace DAL
         private Orders ToEntity(OrderDTO source)
         {
             
-            return new Orders { Client=source.Client,Date=source.Date,Product=source.Product,Sum=source.Sum };
+            return new Orders { Client=source.Client,Date=source.Date,Product=source.Product,Sum=source.Sum,Manager_Id=source.ManagerId };
         }
 
         private OrderDTO ToObject(Orders source)
