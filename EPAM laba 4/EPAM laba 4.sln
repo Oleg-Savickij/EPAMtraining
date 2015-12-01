@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "BL\BL.csproj", "{4095
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryWatchService", "DirectoryWatchService\DirectoryWatchService.csproj", "{E4A207FB-C3A8-43A0-A610-C7EE1689556C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilesAddingApplicatio", "FilesAddingApplicatio\FilesAddingApplicatio.csproj", "{FCC6FBD6-8E03-4FFF-94CC-89F8F77BA40D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilesAddingApplication", "FilesAddingApplicatio\FilesAddingApplication.csproj", "{FCC6FBD6-8E03-4FFF-94CC-89F8F77BA40D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

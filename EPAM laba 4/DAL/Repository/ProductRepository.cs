@@ -49,7 +49,12 @@ namespace DAL
 
         public ProductDTO GetByName(string Name)
         {
-            return ToObject(context.Product.FirstOrDefault(x => x.Name == Name));
+            try
+            {
+                return ToObject(context.Product.FirstOrDefault(x => x.Name == Name));
+            }
+            catch (InvalidOperationException)
+            { return null; }
         }
 
         public void Save()

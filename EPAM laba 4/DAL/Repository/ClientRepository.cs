@@ -49,7 +49,14 @@ namespace DAL
 
         public ClientDTO GetByName(string Name)
         {
-            return ToObject(context.Client.FirstOrDefault(x => x.SecondName == Name));
+            try
+            {
+                return ToObject(context.Client.FirstOrDefault(x => x.SecondName == Name));
+            }
+            catch (InvalidOperationException)
+            {
+                return null;
+            }
         }
 
         public void Save()
