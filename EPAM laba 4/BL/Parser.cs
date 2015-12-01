@@ -21,7 +21,7 @@ namespace BL
             string[] managerName = Path.Split('\\', '.', '_');
             object locker = new object();
 
-            var manager = new ManagerDTO { Name = managerName[managerName.Length - 2] };
+            var manager = new ManagerDTO { Name = managerName[managerName.Length - 3] };
             lock (locker)
             {
                 if (uow.Managers.GetByName(manager.Name) == null)

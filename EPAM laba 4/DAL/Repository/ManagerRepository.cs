@@ -49,14 +49,13 @@ namespace DAL
 
         public ManagerDTO GetByName(string Name)
         {
-            try
+            var man = context.Manager.FirstOrDefault(x => x.SecondName == Name);
+            if (man != null)
             {
-                return ToObject(context.Manager.FirstOrDefault(x => x.SecondName == Name));
+                return ToObject(man);
             }
-            catch (InvalidOperationException)
-            {
-                return null;
-            }
+            else { return null; }
+            
         }
 
         public void Save()
